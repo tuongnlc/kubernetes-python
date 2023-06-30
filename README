@@ -1,0 +1,7 @@
+Step 1: Build IAC
+
+Step 2: cd to ch02
+gcloud builds submit --tag us-central1-docker.pkg.dev/care-dataservice/test-artifact-repository/timeserver:1
+
+Step 3: Deploy into k8s
+
