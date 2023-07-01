@@ -3,5 +3,9 @@ Step 1: Build IAC
 Step 2: cd to ch02
 gcloud builds submit --tag us-central1-docker.pkg.dev/care-dataservice/test-artifact-repository/timeserver:1
 
+Make repo publish
+gcloud artifacts repositories add-iam-policy-binding test-artifact-repository \
+--location=us-central1 --member=allUsers --role="roles/artifactregistry.reader"
+
 Step 3: Deploy into k8s
 
