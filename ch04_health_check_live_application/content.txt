@@ -1,0 +1,43 @@
+In Kubernetes, the health of a container is determined by two separate probes: liveness that
+determines if the container is running, and readiness which indicates when the container is
+able to receive traffic.
+
++   readline probe:
+    Perform HTTP request every number of second with timeout
+    Now, any time the container fails to respond to the readiness check, that Pod will be
+    temporarily removed from the service.
+
++   liveness probe:
+    Cơ chế liveness probe được sử dụng để kiểm tra xem khi nào thì nên khởi động lại một pods. 
+    Tức là nó sẽ kiểm tra xem ứng dụng của bạn còn sống hay đã chết hoặc không hoạt động đúng chức năng
+    
+    Perform HTTP request every number of second with timeout
+    After the failure of time of specific activities. 
+    For example, perform HTTP request to server. Consider 10 error responses in a row to indicate the container is not ready 
+        --> Pod will be restart
+
+
+Thứ hai, chúng ta có một số strategy để update application trong k8s là:
++   Rolling update
+Kubernetes waits for the new group of Pods to become available, then terminates
+the same number of Pods running the old version, repeating this until all Pods are running
+the new version.
+Update từng cái cho tới khi  
+
++   Replacement update
+Immediately delete pod, then recreate pod
+With the right readiness checks in place, this downtime could
+be as short as the time to boot the first Pod, assuming it can handle the client traffic at that
+moment in time.
+
+With the right readiness checks in place, this downtime could
+be as short as the time to boot the first Pod, assuming it can handle the client traffic at that
+moment in time. 
+
++   Blue/green strategy
+The Blue/Green strategy is a rollout strategy where the new application version is deployed
+alongside the existing version. These versions are given the names “blue” and “green”. When
+the new version is fully deployed, tested, and ready to go – the service is cut over. If there’s
+a problem, it can be immediately cut back, and after a time if everything looks good, the old
+version can be removed.
+

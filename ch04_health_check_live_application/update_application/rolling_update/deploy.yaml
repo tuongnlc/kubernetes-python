@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: timeserver
+spec:
+  replicas: 3
+  slector:
+    matchLabels:
+      pod: timeserver-pod
+  strategy:
+    #rolling update strategy 
+    type: RollingUpdate 
+    #optional configuration 
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  templte:
+    metadata:
+      labels:
+        pod: timeserver-pod
+    spec:
+      containers: 
+      - name: timeserver-container 
+        image: us-central1-docker.pkg.dev/care-dataservice/test-artifact-repository/timeserver:1

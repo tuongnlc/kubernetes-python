@@ -1,0 +1,2 @@
+The Kubernetes scheduler performs a resource-based allocation of Pods to Nodes, and is
+really the brains of the whole system.

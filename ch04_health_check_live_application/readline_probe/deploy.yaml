@@ -1,0 +1,28 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: timeserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      pod: timeserver-pod
+  template:
+    metadata:
+      labels:
+        pod: timeserver-pod
+    spec:
+      containers:
+      - name: timeserver-container
+        image: us-central1-docker.pkg.dev/care-dataservice/test-artifact-repository/timeserver:1
+        readinessProbe: 
+          initialDelaySeconds: 15
+          periodSeconds: 30 
+          #perform HTTP request every 30 day - with timeout is 2 second
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 2
+          failureThreshold: 1
+          successThreshold: 1
