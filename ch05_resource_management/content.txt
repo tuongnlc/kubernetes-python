@@ -1,2 +1,11 @@
 The Kubernetes scheduler performs a resource-based allocation of Pods to Nodes, and is
 really the brains of the whole system.
+
+I: Pod Scheduling
+To control resource of the pod, we can define some variable in:
++   pod resource
+    In container spec, we can define reources with specific resource:
+    +   reources requests
+    +   reources limit
+
++   
