@@ -1,0 +1,27 @@
+I: Pod scale
+
++   Cách scale đầu tiên và có lẽ đơn giản nhất là, chúng ta có thể thay đổi số replicas trong deployment
+
++   Cách thứ hai, chúng ta có thể tiến hành horizontal, autoscaling:
+    Scaling the number of Pod replicas of your application in Kubernetes is referred to as
+    horizontal pod autoscaling. It’s “horizontal” as you’re increasing the number of replicas in
+    order to serve increased traffic.
+
+    --> Kubernetes includes a feature called the Horizontal Pod Autoscaler (HPA), a system
+        whereby you specify a Pod metric like CPU usage to observe and target, along with some
+        scaling limits (minimum and maximum replicas). 
+
+    -->  The HPA will then aim to satisfy your metric by creating and removing Pods. 
+    In the case of CPU, say your target is 20% CPU utilization, this means that 
+        the HPA will add replicas when your average utilization
+        +    (across all pods) goes above 20% (of what the Pod requested in its resource requests)
+        +   remove them when it goes below 20%.
+
+II: Cluster Autoscaling
+Cluster autoscaling is not part of Kubernetes, but is a common provider-provided feature that
+scales nodes for you, allowing you to focus just on your application and how many replicas it
+has. (GKE support this feature for us)
++   In the case of GKE, if you use the Autopilot mode of operation clusters have built-in node
+provisioning and autoscaling, no further configuration required.
++    For GKE’s Standard mode of operation, you can configure autoscaling when creating a node pool, or update an existing
+node pool. 
